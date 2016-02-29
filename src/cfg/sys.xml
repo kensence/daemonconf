@@ -1,0 +1,18 @@
+<sys>
+	<n-mix>
+		<ip>169.254.0.7</ip>
+	</n-mix>
+	<serial>
+		<port>COM1</port>
+		<!--unsigned int rate = 0 -->
+		<baud_rate>115200</baud_rate>
+		<!--unsigned int t = 8 -->
+		<character_size>8</character_size>
+		<!--none;software;hardware -->
+		<flow_control>none</flow_control>
+		<!--none;odd;even -->
+		<parity>none</parity>
+		<!--one;onepointfive;two -->
+		<stop>one</stop>
+	</serial>
+</sys>
