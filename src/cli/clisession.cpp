@@ -22,7 +22,7 @@ CliAcceptor::CliAcceptor(unsigned int ip, ControlCenter *cc)
 ,m_CliAcceptor(io_server.GetIoService())
 ,m_cc(cc)
 {
-	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address_v4(m_acceptIp), 8888);
+	boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::address_v4(m_acceptIp), 5555);
 	m_CliAcceptor.open(endpoint.protocol());
 	m_CliAcceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(1));
 	m_CliAcceptor.bind(endpoint);

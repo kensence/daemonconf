@@ -81,23 +81,23 @@ bool ControlCenter::Message(const std::string & userid, const std::string & buf,
 		}
 		else if(function == "set_dev_ip")
 		{
-
+			return this->SetDeviceIP(message, ret);
 		}
 		else if(function == "set_dev_name")
 		{
-
+			return this->SetDeviceName(message, ret);
 		}
 		else if(function == "set_dev_src_ip")
 		{
-
+			return this->SetDeviceSrcIP(message, ret);
 		}
 		else if(function == "set_dev_bitrate")
 		{
-
+			return this->SetDeviceBitRate(message, ret);
 		}
 		else if(function == "set_dev_reboot")
 		{
-
+			return this->SetReboot(message, ret);
 		}
 		return false;
 	}
