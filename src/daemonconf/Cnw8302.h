@@ -22,4 +22,9 @@ public:
 
 	bool SetDevBitRate(std::string &bitrate);
 	bool GetDevBitRate(std::string &result);
+
+	bool SetDevType(TYPE_DEV &type);
+	bool GetDevType(std::string &result);
+
+	bool SetReboot();
 };

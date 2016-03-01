@@ -16,6 +16,8 @@
 #include "clisession.h"
 #include "IoServer.h"
 
+#include "Cnw8302.h"
+
 extern std::string GenUuid();
 extern std::string get_cur_time();
 
@@ -54,8 +56,6 @@ extern std::string GenUuid();
 
 bool ControlCenter::Init()
 {
-	this->DeviceInfo();
-
 	std::string ret;
 	std::cout << "Discover Device Info Finish!" << std::endl;
 
@@ -79,11 +79,23 @@ bool ControlCenter::Message(const std::string & userid, const std::string & buf,
 		{
 			return this->UserLogin(message, ret);
 		}
-		else if(function == "link_add")
+		else if(function == "set_dev_ip")
 		{
 
 		}
-		else
+		else if(function == "set_dev_name")
+		{
+
+		}
+		else if(function == "set_dev_src_ip")
+		{
+
+		}
+		else if(function == "set_dev_bitrate")
+		{
+
+		}
+		else if(function == "set_dev_reboot")
 		{
 
 		}
@@ -117,8 +129,101 @@ bool ControlCenter::UserLogin(boost::property_tree::ptree & message, std::string
 	}
 	return false;
 }
-bool ControlCenter::DeviceInfo()
+
+bool ControlCenter::GetDevices(boost::property_tree::ptree & message, std::string &ret)
 {
 
+	return true;
+}
+
+bool ControlCenter::GetDeviceInfo(boost::property_tree::ptree & message, std::string &ret)
+{
+
+	return true;
+}
+
+bool ControlCenter::SetDeviceIP(boost::property_tree::ptree & message, std::string &ret)
+{
+	const char chflag = '/';
+	boost::property_tree::ptree & dev = message.get_child(boost::property_tree::ptree::path_type("dev", chflag));
+	std::string ip = dev.get<std::string>("ip");
+	Cnw8302 cnw8302("dev");
+	bool r = cnw8302.SetDevIP(ip);
+
+	ret += "<message><function>set_dev_ip</function>";
+	if(r)
+	{
+		ret += "<status><code>0</code><info>success</info></status></message>";
+	}
+	else
+	{
+		ret += "<status><code>1</code><info>set ip error</info></status></message>";
+	}
+	return r;
+}
+
+bool ControlCenter::SetDeviceName(boost::property_tree::ptree & message, std::string &ret)
+{
+	const char chflag = '/';
+	boost::property_tree::ptree & dev = message.get_child(boost::property_tree::ptree::path_type("dev", chflag));
+	std::string name = dev.get<std::string>("name");
+	Cnw8302 cnw8302("dev");
+	bool r = cnw8302.SetDevName(name);
+
+	ret += "<message><function>set_dev_name</function>";
+	if(r)
+	{
+		ret += "<status><code>0</code><info>success</info></status></message>";
+	}
+	else
+	{
+		ret += "<status><code>1</code><info>set ip error</info></status></message>";
+	}
+	return r;
+}
+
+bool ControlCenter::SetDeviceSrcIP(boost::property_tree::ptree & message, std::string &ret)
+{
+	const char chflag = '/';
+	boost::property_tree::ptree & dev = message.get_child(boost::property_tree::ptree::path_type("dev", chflag));
+	std::string ip = dev.get<std::string>("ip");
+	Cnw8302 cnw8302("dev");
+	bool r = cnw8302.SetDevSrcIP(ip);
+	ret += "<message><function>set_dev_src_ip</function>";
+	if(r)
+	{
+		ret += "<status><code>0</code><info>success</info></status></message>";
+	}
+	else
+	{
+		ret += "<status><code>1</code><info>set ip error</info></status></message>";
+	}
+	return r;
+}
+
+bool ControlCenter::SetDeviceBitRate(boost::property_tree::ptree & message, std::string &ret)
+{
+	const char chflag = '/';
+	boost::property_tree::ptree & dev = message.get_child(boost::property_tree::ptree::path_type("dev", chflag));
+	std::string bitrate = dev.get<std::string>("bitrate");
+	Cnw8302 cnw8302("dev");
+	bool r = cnw8302.SetDevSrcIP(bitrate);
+	ret += "<message><function>set_dev_bitrate</function>";
+	if(r)
+	{
+		ret += "<status><code>0</code><info>success</info></status></message>";
+	}
+	else
+	{
+		ret += "<status><code>1</code><info>set ip error</info></status></message>";
+	}
+	return r;
+}
+
+bool ControlCenter::SetReboot(boost::property_tree::ptree & message, std::string &ret)
+{
+	Cnw8302 cnw8302("dev");
+	bool r = cnw8302.SetReboot();
+	ret += "<message><function>set_dev_reboot</function><status><code>0</code><info>success</info></status></message>";
 	return true;
 }
