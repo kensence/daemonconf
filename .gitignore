@@ -5,7 +5,7 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 
-./src/build/*
+./src/build/
 .cproject
 .project
-./src/lib/*
+./src/lib/
