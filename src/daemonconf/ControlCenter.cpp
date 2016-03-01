@@ -120,7 +120,7 @@ bool ControlCenter::UserLogin(boost::property_tree::ptree & message, std::string
 	if(name == "admin" && password == "admin")
 	{
 		//OK
-		ret += "<status><code>0</code><info>success</info></status></message>";
+		ret += "<user><id>001</id><name>admin</name><password>admin</password></user><status><code>0</code><info>success</info></status></message>";
 		return true;
 	}
 	else

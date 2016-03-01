@@ -20,11 +20,11 @@ include_directories($ENV{DBXML_DIR}/include)
 link_directories($ENV{BOOSTLIB_DIR}/stage/lib)
 link_directories($ENV{DBXML_DIR}/lib)
 
-ADD_EXECUTABLE(daemonconf_bin
+ADD_EXECUTABLE(daemonconf
     ${pro_SOURCE}
     )
 
-target_link_libraries(daemonconf_bin
+target_link_libraries(daemonconf
     udplib
     cli
     ${CMAKE_THREAD_LIBS_INIT}
@@ -32,7 +32,7 @@ target_link_libraries(daemonconf_bin
     )
     
 if (UNIX)
-	target_link_libraries(daemonconf_bin    
+	target_link_libraries(daemonconf   
 		boost_filesystem-mt.a
 		boost_system-mt.a
 		boost_thread-mt.a

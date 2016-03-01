@@ -383,7 +383,7 @@ bool CliSession::HandleH245SignalMessage(boost::shared_ptr<std::string> buf)
 				{
 					boost::property_tree::ptree & user = message.get_child(boost::property_tree::ptree::path_type("user", chflag));
 					m_userId = user.get<std::string>("id");
-					m_group = user.get<std::string>("group");
+					//m_group = user.get<std::string>("group");
 					///delete exists same users id session
 					///handle single user login problem
 					this->m_acceptor->HandleOneUserLogin(this->shared_from_this());
